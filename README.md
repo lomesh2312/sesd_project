@@ -1,55 +1,33 @@
-📇 Contact Management System – Backend (SESD Workshop)
+Contact Management System (Backend)
 
-A full-fledged CRUD backend application built using Node.js, Express, PostgreSQL, Prisma ORM, and TypeScript, following Object-Oriented Programming (OOP) principles and a clean layered architecture.
+This is a backend CRUD application built using Node.js, Express, PostgreSQL, Prisma ORM, and TypeScript.
+The project follows Object-Oriented Programming (OOP) principles and a clean layered architecture.
 
-This project is developed as part of the SESD Workshop Assignment, focusing on real-world backend practices such as authentication, validation, clean error handling, and advanced query features.
+This project is created as part of the SESD Workshop Assignment.
 
-🚀 Features
-✅ Core CRUD Operations
+Features
 
-Create Contact
-
-Get Single Contact
-
-Get All Contacts
-
-Update Contact
-
-Delete Contact
-
-🔍 Advanced Features
-
-Search (by name, phone, email)
-
-Filtering (category, favorite)
-
-Sorting (name, createdAt)
-
-Pagination (page & limit)
-
-🔐 Authentication (Bonus)
-
-User Registration & Login
-
-Password hashing using bcrypt
+User registration and login
 
 JWT-based authentication
 
-Protected routes
+Create, read, update, and delete contacts
 
-Users can access only their own contacts
+Search contacts by name, phone, or email
 
-🧱 Clean Architecture
+Filter contacts by category and favorite status
 
-Controllers → Services → Repositories
+Sort contacts by name or creation date
 
-Prisma ORM used only in repositories
+Pagination support
 
-Centralized error handling
+Clean error handling
 
-Reusable API response structure
+Validation using express-validator
 
-🛠 Tech Stack
+Proper OOP structure (Controller, Service, Repository)
+
+Tech Stack
 
 Node.js
 
@@ -61,75 +39,59 @@ PostgreSQL
 
 Prisma ORM
 
-JWT Authentication
+JWT
 
 bcrypt
 
 express-validator
 
-dotenv, cors, helmet, morgan
+Project Structure
 
-📁 Project Structure
-sesd_project/
-│
-├── prisma/
-│   └── schema.prisma
-│
-├── src/
-│   ├── controllers/
-│   │   ├── AuthController.ts
-│   │   └── ContactController.ts
-│   │
-│   ├── services/
-│   │   ├── AuthService.ts
-│   │   └── ContactService.ts
-│   │
-│   ├── repositories/
-│   │   ├── BaseRepository.ts
-│   │   ├── UserRepository.ts
-│   │   └── ContactRepository.ts
-│   │
-│   ├── routes/
-│   │   ├── authRoutes.ts
-│   │   └── contactRoutes.ts
-│   │
-│   ├── middlewares/
-│   │   ├── authMiddleware.ts
-│   │   └── errorMiddleware.ts
-│   │
-│   ├── utils/
-│   │   ├── ApiError.ts
-│   │   └── ApiResponse.ts
-│   │
-│   ├── app.ts
-│   └── server.ts
-│
-├── package.json
-├── tsconfig.json
-└── .gitignore
+src/
+controllers/
+AuthController.ts
+ContactController.ts
 
-🧠 Architecture Explanation (OOP)
+services/
+AuthService.ts
+ContactService.ts
+
+repositories/
+BaseRepository.ts
+UserRepository.ts
+ContactRepository.ts
+
+routes/
+authRoutes.ts
+contactRoutes.ts
+
+middlewares/
+authMiddleware.ts
+errorMiddleware.ts
+
+utils/
+ApiError.ts
+ApiResponse.ts
+
+app.ts
+server.ts
+
+prisma/
+schema.prisma
+
+Architecture Overview
+
 Controller Layer
-
-Handles HTTP requests & responses
-
-No business logic
+Handles HTTP requests and responses only.
 
 Service Layer
-
-Contains business logic
-
-Performs validation and authorization checks
+Contains business logic, validation, and authorization.
 
 Repository Layer
+Handles all database operations using Prisma ORM.
 
-Handles all database interactions
+Database Models
 
-Uses Prisma Client only
-
-This separation ensures maintainability, testability, and scalability.
-
-🧬 Database Schema (Prisma)
 User
 
 id
@@ -139,8 +101,6 @@ name
 email (unique)
 
 password (hashed)
-
-contacts (relation)
 
 createdAt
 
@@ -158,62 +118,64 @@ email
 
 address
 
-category (personal | work | emergency)
+category
 
 isFavorite
 
-userId (FK)
+userId (foreign key)
 
 createdAt
 
 updatedAt
 
-🔗 API Endpoints
-Auth Routes
+API Endpoints
+
+Authentication
+
 POST /api/auth/register
 POST /api/auth/login
 
-Contact Routes (Protected)
-POST   /api/contacts
-GET    /api/contacts
-GET    /api/contacts/:id
-PUT    /api/contacts/:id
+Contacts (Protected Routes)
+
+POST /api/contacts
+GET /api/contacts
+GET /api/contacts/:id
+PUT /api/contacts/:id
 DELETE /api/contacts/:id
 
-⚙️ Environment Variables
+Environment Variables
 
-Create a .env file in the root directory:
+Create a .env file in the root directory.
 
 PORT=5000
 DATABASE_URL=postgresql://username:password@localhost:5432/dbname
 JWT_SECRET=your_jwt_secret
 
-▶️ How to Run the Project
-1️⃣ Install Dependencies
+How to Run the Project
+
+Install dependencies
 npm install
 
-2️⃣ Setup Prisma
+Generate Prisma client and run migrations
 npx prisma generate
 npx prisma migrate dev
 
-3️⃣ Run in Development
+Run the project in development
 npm run dev
 
-4️⃣ Build & Run Production
+Build and run for production
 npm run build
 npm start
 
-🧪 API Testing
+API Testing
 
-Use Postman or Thunder Client
+Use Postman or Thunder Client.
 
-First register/login to get JWT token
-
-Add token in headers:
+After login, add the JWT token to request headers.
 
 Authorization: Bearer <token>
 
-📌 Key Learning Outcomes
+Learning Outcomes
 
 Implemented CRUD operations using OOP
 
@@ -221,6 +183,6 @@ Used Prisma ORM with PostgreSQL
 
 Applied repository pattern
 
-Implemented authentication & authorization
+Implemented authentication and authorization
 
-Built scalable and maintainable backend structure
+Built a scalable backend architecture
