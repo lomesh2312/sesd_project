@@ -1,6 +1,7 @@
-const ApiError = require("../utils/ApiError");
+import { Request, Response, NextFunction } from "express";
+import { ApiError } from "../utils/ApiError.js";
 
-const errorMiddleware = (err, req, res, next) => {
+export const errorMiddleware = (err: any, req: Request, res: Response, next: NextFunction) => {
     let error = err;
 
     if (!(error instanceof ApiError)) {
@@ -17,5 +18,3 @@ const errorMiddleware = (err, req, res, next) => {
 
     return res.status(error.statusCode).json(response);
 };
-
-module.exports = errorMiddleware;

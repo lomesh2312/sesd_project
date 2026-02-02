@@ -1,12 +1,15 @@
-const BaseRepository = require("./BaseRepository");
+import { Contact } from "@prisma/client";
+import { BaseRepository } from "./BaseRepository.js";
 
-class ContactRepository extends BaseRepository {
+class ContactRepository extends BaseRepository<Contact> {
     constructor() {
         super("contact");
     }
 
-    async findAllByUserId(userId, { search, category, isFavorite, skip, take, orderBy }) {
-        const where = {
+    async findAllByUserId(userId: number, options: { search?: string; category?: string; isFavorite?: string; skip?: number; take?: number; orderBy?: any }) {
+        const { search, category, isFavorite, skip, take, orderBy } = options;
+
+        const where: any = {
             userId,
             ...(search && {
                 OR: [
@@ -33,4 +36,4 @@ class ContactRepository extends BaseRepository {
     }
 }
 
-module.exports = new ContactRepository();
+export const contactRepository = new ContactRepository();

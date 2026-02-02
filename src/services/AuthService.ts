@@ -1,19 +1,19 @@
-const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
-const UserRepository = require("../repositories/UserRepository");
-const ApiError = require("../utils/ApiError");
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
+import { userRepository } from "../repositories/UserRepository.js";
+import { ApiError } from "../utils/ApiError.js";
 
 class AuthService {
-    async register(data) {
+    async register(data: any) {
         const { name, email, password } = data;
 
-        const existingUser = await UserRepository.findByEmail(email);
+        const existingUser = await userRepository.findByEmail(email);
         if (existingUser) {
             throw new ApiError(400, "User already exists");
         }
 
         const hashedPassword = await bcrypt.hash(password, 10);
-        const user = await UserRepository.create({
+        const user = await userRepository.create({
             name,
             email,
             password: hashedPassword,
@@ -23,8 +23,8 @@ class AuthService {
         return { user: { id: user.id, name: user.name, email: user.email }, token };
     }
 
-    async login(email, password) {
-        const user = await UserRepository.findByEmail(email);
+    async login(email: string, password: string) {
+        const user = await userRepository.findByEmail(email);
         if (!user) {
             throw new ApiError(401, "Invalid credentials");
         }
@@ -38,9 +38,9 @@ class AuthService {
         return { user: { id: user.id, name: user.name, email: user.email }, token };
     }
 
-    generateToken(userId) {
-        return jwt.sign({ id: userId }, process.env.JWT_SECRET, { expiresIn: "1d" });
+    private generateToken(userId: number): string {
+        return jwt.sign({ id: userId }, process.env.JWT_SECRET as string, { expiresIn: "1d" });
     }
 }
 
-module.exports = new AuthService();
+export const authService = new AuthService();

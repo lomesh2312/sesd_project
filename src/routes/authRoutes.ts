@@ -1,6 +1,6 @@
-const express = require("express");
-const { body } = require("express-validator");
-const AuthController = require("../controllers/AuthController");
+import express, { Request, Response, NextFunction } from "express";
+import { body } from "express-validator";
+import { authController } from "../controllers/AuthController.js";
 
 const router = express.Router();
 
@@ -11,7 +11,7 @@ router.post(
         body("email").isEmail().withMessage("Valid email is required"),
         body("password").isLength({ min: 6 }).withMessage("Password must be at least 6 characters"),
     ],
-    AuthController.register
+    (req: Request, res: Response, next: NextFunction) => authController.register(req, res, next)
 );
 
 router.post(
@@ -20,7 +20,7 @@ router.post(
         body("email").isEmail().withMessage("Valid email is required"),
         body("password").notEmpty().withMessage("Password is required"),
     ],
-    AuthController.login
+    (req: Request, res: Response, next: NextFunction) => authController.login(req, res, next)
 );
 
-module.exports = router;
+export default router;
