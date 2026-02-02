@@ -4,10 +4,10 @@ import helmet from "helmet";
 import morgan from "morgan";
 import dotenv from "dotenv";
 
-import authRoutes from "./routes/authRoutes.js";
-import contactRoutes from "./routes/contactRoutes.js";
-import { errorMiddleware } from "./middlewares/errorMiddleware.js";
-import { ApiError } from "./utils/ApiError.js";
+import authRoutes from "./routes/authRoutes";
+import contactRoutes from "./routes/contactRoutes";
+import { errorMiddleware } from "./middlewares/errorMiddleware";
+import { ApiError } from "./utils/ApiError";
 
 dotenv.config();
 

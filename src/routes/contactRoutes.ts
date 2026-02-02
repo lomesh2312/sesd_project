@@ -1,7 +1,7 @@
 import express, { Request, Response, NextFunction } from "express";
 import { body } from "express-validator";
-import { contactController } from "../controllers/ContactController.js";
-import { authMiddleware, AuthRequest } from "../middlewares/authMiddleware.js";
+import { contactController } from "../controllers/ContactController";
+import { authMiddleware, AuthRequest } from "../middlewares/authMiddleware";
 
 const router = express.Router();
 

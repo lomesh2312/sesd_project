@@ -1,6 +1,6 @@
 import express, { Request, Response, NextFunction } from "express";
 import { body } from "express-validator";
-import { authController } from "../controllers/AuthController.js";
+import { authController } from "../controllers/AuthController";
 
 const router = express.Router();
 

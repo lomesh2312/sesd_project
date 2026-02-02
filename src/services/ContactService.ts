@@ -1,5 +1,5 @@
-import { contactRepository } from "../repositories/ContactRepository.js";
-import { ApiError } from "../utils/ApiError.js";
+import { contactRepository } from "../repositories/ContactRepository";
+import { ApiError } from "../utils/ApiError";
 
 class ContactService {
     async createContact(userId: number, data: any) {

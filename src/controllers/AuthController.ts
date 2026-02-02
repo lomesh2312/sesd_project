@@ -1,8 +1,8 @@
 import { Request, Response, NextFunction } from "express";
-import { authService } from "../services/AuthService.js";
-import { ApiResponse } from "../utils/ApiResponse.js";
+import { authService } from "../services/AuthService";
+import { ApiResponse } from "../utils/ApiResponse";
 import { validationResult } from "express-validator";
-import { ApiError } from "../utils/ApiError.js";
+import { ApiError } from "../utils/ApiError";
 
 class AuthController {
     async register(req: Request, res: Response, next: NextFunction) {

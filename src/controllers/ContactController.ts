@@ -1,9 +1,9 @@
 import { Response, NextFunction } from "express";
-import { AuthRequest } from "../middlewares/authMiddleware.js";
-import { contactService } from "../services/ContactService.js";
-import { ApiResponse } from "../utils/ApiResponse.js";
+import { AuthRequest } from "../middlewares/authMiddleware";
+import { contactService } from "../services/ContactService";
+import { ApiResponse } from "../utils/ApiResponse";
 import { validationResult } from "express-validator";
-import { ApiError } from "../utils/ApiError.js";
+import { ApiError } from "../utils/ApiError";
 
 class ContactController {
     async createContact(req: AuthRequest, res: Response, next: NextFunction) {

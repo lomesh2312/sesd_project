@@ -1,7 +1,7 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { userRepository } from "../repositories/UserRepository.js";
-import { ApiError } from "../utils/ApiError.js";
+import { userRepository } from "../repositories/UserRepository";
+import { ApiError } from "../utils/ApiError";
 
 class AuthService {
     async register(data: any) {
